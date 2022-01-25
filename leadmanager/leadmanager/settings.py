@@ -25,8 +25,9 @@ SECRET_KEY = 't7g$gddxotz%5_gwrt64xf#-bjwr(bk_#10!ur9et_s-*vhqti'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [
+    'https://localhost:3000',
+    "https://rocky-brushlands-9769.herokuapp.com/"]
 
 # Application definition
 
@@ -37,10 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'leads',
+
+    'corsheaders',
     'rest_framework',
-    'frontend',
     'knox',
+
+    'leads',
+    'frontend',
     'accounts',
 ]
 
@@ -49,6 +53,7 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -75,6 +80,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'leadmanager.wsgi.application'
 
@@ -121,6 +127,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
