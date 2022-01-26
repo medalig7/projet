@@ -26,7 +26,7 @@ SECRET_KEY = 't7g$gddxotz%5_gwrt64xf#-bjwr(bk_#10!ur9et_s-*vhqti'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'https://localhost:3000',
+    '127.0.0.1',
     "https://rocky-brushlands-9769.herokuapp.com/"]
 
 # Application definition
@@ -55,6 +55,7 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -133,3 +134,12 @@ CORS_ORIGIN_ALLOW_ALL = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'leadmanager/frontend/static/frontend')
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
